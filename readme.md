@@ -1,15 +1,13 @@
-[![Build Status](https://travis-ci.org/KarlPurk/redux-decorators.png)](https://travis-ci.org/KarlPurk/redux-decorators)
+# Spicy Redux Decorators
 
-# Redux Decorators
-
-A ridiculously good syntax for working with Redux using decorators in ES7 / TypeScript.  Currently limited to Angular 2 but could potentially be used elsewhere.
+An OK syntax for working with Redux using decorators in TypeScript.  Currently limited to Angular 2 but could potentially be used elsewhere.
 
 <a href="http://plnkr.co/edit/mhZNwlkrpo7k4rzEQaOr?p=preview" target="_blank">Try a live example on plunkr</a>
 
 # Installation
 
 ```
-npm i redux-decorators
+npm i spicy-redux-decorators
 ```
 
 # Example Usage (Angular 2)
@@ -177,11 +175,43 @@ In the above example we are declaring that the `todos` property of the
 store's `todos` property is changed.  Please also refer to the `@Store()`
 equivalent.
 
+
+### @Subscribe()
+
+The `@Subscribe()` decorator is used to register a state listener to the global
+ store. 
+
+**todo.service.ts**
+```js
+class TodoService {
+   @Subscribe() stateChange(state) {
+   // Did todos change?
+    //Persist Todos
+   ...
+}
+```
+
+In the above example we are declaring that the `stateChange` method of the
+`TodoListService` should be called every time the state changes. Note that 
+`@Store` is not required.
+
+```js
+@Store('todos')
+class TodoListComponent {
+   @Subscribe() stateChange(state) {
+   // Did todos change?
+    //Persist Todos
+   ...
+}
+```
+
+In the above example we are declaring that the `stateChange` method of the
+`TodoListComponent` should be called every time the state changes. `@Store`
+will handle subscribing and unsub
+
 # TODO
 
-1. TypeScript definition file
-2. Unit tests
-3. Review/improve TypeScript usage
+1. Tests
 
 # License
 
